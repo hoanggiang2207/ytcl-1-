@@ -187,14 +187,13 @@ const Watch = () => {
                   )}
                 </div>
               </div>
-              <button className="px-4 h-[38px] font-medium text-sm items-center justify-center bg-black hover:bg-neutral-900 text-white rounded-full">
+              <button className="px-4 h-[38px] font-medium text-sm items-center justify-center bg-black text-white rounded-full">
                 Subscribe
               </button>
             </div>
             <div className="flex items-center w-[45%] justify-between mt-2">
               <div className="flex items-center cursor-pointer bg-gray-200 px-4 h-[38px] rounded-full ">
-                
-                <AiOutlineLike size="20px" className="mr-1 " />
+                <AiOutlineLike size="20px" className="mr-1" />
                 <span>{shortenSubscriberCount(likeCount).toLocaleString()}</span>
                 <div className="h-6 border-l border-gray-400 mx-2" />
                 <AiOutlineDislike size="20px" className="ml-1" />

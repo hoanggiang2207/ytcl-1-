@@ -50,7 +50,7 @@ const VideoThumbnailFeed = ({
           <LazyLoadImage
             src={item.snippet.thumbnails.medium.url}
             alt={item.snippet.title}
-            className="w-[390px] h-[225px] object-cover rounded"
+            className="w-[390px] h-[225px] object-cover rounded-xl"
             effect="blur"
           />
         ) : (

@@ -63,16 +63,16 @@ const VideoDetails = ({ video, channelIcon, subscriberCount }) => {
         )}
       </div>
 
-      <div>
+      <div className='mt-1'>
         <p>
           {showMore ? snippet.description : truncatedDescription}
           {!showMore && (
             <span onClick={toggleShowMore} className="text-black font-semibold cursor-pointer">
-              Show more
+              more
             </span>
           )}
         </p>
-        <div className="flex items-center">
+        <div className="flex items-center mt-5 mb-1">
           {showMore && (
             <Link to={`/channel?channelId=${snippet.channelId}`}>
               <Avatar src={channelIcon} size={50} round />
