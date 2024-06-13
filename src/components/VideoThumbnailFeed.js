@@ -122,7 +122,7 @@ const VideoThumbnailFeed = ({
               >
                 {item.snippet.title}
                 {tooltipVisible === index && (
-                  <div className="absolute z-10 inline-block px-2 py-2 text-[14px] text-white bg-gray-900 rounded-lg shadow-sm tooltip dark:bg-gray-700">
+                  <div className="absolute z-50 top-[18rem] text-center right-2 px-1 text-[13px] text-white bg-gray-900 border-white">
                     {item.snippet.title}
                   </div>
                 )}

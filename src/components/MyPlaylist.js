@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { connect } from "react-redux";
-import { removeVideoFromPlaylist, removePlaylist } from "../utils/action";
+import { removePlaylist } from "../utils/action";
 import { Link } from "react-router-dom";
 import { RiDeleteBinLine } from "react-icons/ri";
 import axios from "axios";
@@ -8,7 +8,7 @@ import API_KEY from "../constants/yt-API";
 import { CgPlayList } from "react-icons/cg";
 import { HiDotsVertical } from "react-icons/hi";
 
-const MyPlaylist = ({ playlists, removeVideoFromPlaylist, removePlaylist }) => {
+const MyPlaylist = ({ playlists, removePlaylist }) => {
   const [channelAvatars, setChannelAvatars] = useState({});
   const [showDeleteButton, setShowDeleteButton] = useState({});
   const moreButtonRefs = useRef({});
@@ -46,10 +46,6 @@ const MyPlaylist = ({ playlists, removeVideoFromPlaylist, removePlaylist }) => {
 
     fetchAvatars();
   }, [playlists]);
-
-  const handleRemoveVideo = (playlistName, video) => {
-    removeVideoFromPlaylist(playlistName, video);
-  };
 
   const handleRemovePlaylist = (playlistName) => {
     removePlaylist(playlistName);
@@ -135,21 +131,17 @@ const MyPlaylist = ({ playlists, removeVideoFromPlaylist, removePlaylist }) => {
                     </button>
                     {showDeleteButton[playlist] && (
                       <div className="absolute right-1 top-[14rem] z-50">
-                        
                         <button
                           onClick={() => handleRemovePlaylist(playlist)}
-                          className="bg-white text-black rounded-lg px-10 py-2 flex "
+                          className="bg-white text-black rounded-lg px-10 py-2 flex items-center justify-start hover:bg-gray-700 hover:text-white"
                           style={{
                             boxShadow:
                               "0px 4px 6px -1px rgba(0, 0, 0, 0.1), 0px -4px 6px -1px rgba(0, 0, 0, 0.1)",
                           }}
                         >
-                          
                           <RiDeleteBinLine className="h-6 w-6 mr-2" />
-                          <p className="">Delete</p>
-                          
+                          <p>Delete</p>
                         </button>
-                        
                       </div>
                     )}
                   </div>
@@ -168,7 +160,6 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = {
-  removeVideoFromPlaylist,
   removePlaylist,
 };
 

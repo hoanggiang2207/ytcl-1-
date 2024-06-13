@@ -28,9 +28,9 @@ const HistoryView = () => {
                 <img src={video.snippet.thumbnails.medium.url} alt="video thumbnail" className='w-[246px] h-[138px] object-cover rounded-lg' />
               </Link>
               <div className='ml-4 flex-grow'>
-                <div className='flex  '>
+                <div className='flex '> {/* Added justify-between class */}
                   <Link to={`/watch?v=${typeof video.id === 'object' ? video.id.videoId : video.id}`} className='flex-grow'>
-                    <h3 data-tooltip-target="tooltip-bottom" data-tooltip-placement="bottom" className='text-[18px] font-semibold text-black line-clamp-2'>{video.snippet.title}</h3>
+                    <h3 data-tooltip-target="tooltip-bottom" data-tooltip-placement="bottom" className='text-[18px] font-semibold text-black line-clamp-1'>{video.snippet.title}</h3>
                     <div id="tooltip-bottom" role='tooltip' className="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
                       {video.snippet.title}
                     </div>
