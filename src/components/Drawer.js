@@ -1,11 +1,10 @@
-// Drawer.js
-
+import { faBars } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import { MdHomeFilled, MdHistory, MdOutlineSmartDisplay } from "react-icons/md";
 import { Link, useLocation } from "react-router-dom";
-import { useSelector } from "react-redux";
 
-const Drawer = ({ isDrawerVisible }) => {
+const Drawer = ({ isDrawerVisible, toggleDrawer }) => {
   const location = useLocation();
 
   const mainLinks = [
@@ -31,30 +30,30 @@ const Drawer = ({ isDrawerVisible }) => {
 
   const textLinks = [[], []];
 
-  const drawerWidth = isDrawerVisible ? "w-[240px]" : "w-0";
-  const shouldRenderExtraContent = isDrawerVisible ? (
-    <>
-      <ul className="flex gap-2 flex-wrap text-sm p-4 text-zinc-400">
-        {textLinks[1].map((name) => (
-          <li key={name}>{name}</li>
-        ))}
-      </ul>
-      <span className="px-4 text-sm text-zinc-400 ml-2 select-none">&copy; 2024 Google</span>
-      <br />
-      <p className="px-4 pt-3 text-sm text-zinc-400 ml-2 select-none">
-        This clone is for educational purpose only. 
-      </p>
-    </>
-  ) : null;
-
   return (
-    <div className={`${drawerWidth} fixed top-0 left-0 h-full transition-width duration-300 flex-shrink-0 overflow-auto pb-8 bg-white z-50 mt-[64px]`}>
-      <ul className="flex flex-col border-b-2 border-gray-200">
+    <div className={`fixed  left-0 h-full bg-white text-black z-50 transition-transform duration-100 ${isDrawerVisible ? 'translate-x-0' : '-translate-x-full'} w-[240px]`}>
+      <ul className="flex flex-col border-b-2 border-gray-700">
+        <li className="pl-6 py-3 ml-2 flex items-center">
+          <FontAwesomeIcon
+            className="cursor-pointer"
+            icon={faBars}
+            style={{ fontSize: "24px" }}
+            onClick={toggleDrawer}
+          />
+          <Link to="/">
+            <img
+              className="ml-4"
+              width={"95px"}
+              src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/YouTube_Logo_2017.svg/768px-YouTube_Logo_2017.svg.png"
+              alt="logo"
+            />
+          </Link>
+        </li>
         {mainLinks.map(({ icon, name, url }) => (
           <li
             key={name}
             className={`pl-6 py-3 hover:bg-zinc-400 ${
-              location.pathname === url ? "bg-slate-200" : ""
+              location.pathname === url ? "bg-zinc-400" : ""
             }`}
           >
             <Link to={url} className="flex items-center gap-5 ml-2">
@@ -64,12 +63,12 @@ const Drawer = ({ isDrawerVisible }) => {
           </li>
         ))}
       </ul>
-      <ul className="flex flex-col border-b-2 border-gray-200">
+      <ul className="flex flex-col border-b-2 border-gray-700">
         {secondaryLinks.map(({ icon, name, url }) => (
           <li
             key={name}
             className={`pl-6 py-3 hover:bg-zinc-400 ${
-              location.pathname === url ? "bg-slate-200" : ""
+              location.pathname === url ? "bg-zinc-400" : ""
             }`}
           >
             <Link to={url} className="flex items-center ml-2 gap-5">
@@ -79,7 +78,20 @@ const Drawer = ({ isDrawerVisible }) => {
           </li>
         ))}
       </ul>
-      {shouldRenderExtraContent}
+      {isDrawerVisible && (
+        <>
+          <ul className="flex gap-2 flex-wrap text-sm p-4 text-zinc-400">
+            {textLinks[1].map((name) => (
+              <li key={name}>{name}</li>
+            ))}
+          </ul>
+          <span className="px-4 text-sm text-zinc-400 ml-2 select-none">&copy; 2024 Google</span>
+          <br />
+          <p className="px-4 pt-3 text-sm text-zinc-400 ml-2 select-none">
+            This clone is for educational purpose only. 
+          </p>
+        </>
+      )}
     </div>
   );
 };

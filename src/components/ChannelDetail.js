@@ -20,7 +20,9 @@ const ChannelDetail = () => {
   const location = useLocation();
   const query = new URLSearchParams(location.search);
   const channelId = query.get("channelId");
-
+  const formatSubscriberCount = (count) => {
+    return count.toLocaleString();
+  };
   useEffect(() => {
     const fetchChannelDetails = async () => {
       try {
@@ -134,7 +136,7 @@ const ChannelDetail = () => {
           <div>
             <h1 className="font-bold text-[36px]">{channelName}</h1>
             <p className="text-[#606060] font-[550] text-[14px]">
-              {channelCustomUrl} • {subscriberCount} subscribers • {videoCount}{" "}
+              {channelCustomUrl} • {formatSubscriberCount(parseInt(subscriberCount))} subscribers • {videoCount}{" "}
               videos
             </p>
             <p className="text-[#606060] text-[14px] line-clamp-1">

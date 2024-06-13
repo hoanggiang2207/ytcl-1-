@@ -1,14 +1,13 @@
 import React, { useEffect, useState, useRef, useCallback } from "react";
 import axios from "axios";
 import { YOUTUBE_VIDEO_API, YOUTUBE_CHANNEL_API } from "../constants/yt-API";
-import { connect } from "react-redux";
+import { connect, useSelector } from "react-redux";
 import { addVideoToPlaylist, addWatchedVideo } from "../utils/action";
 import LoadingAnimation from "./LoadingAnimation"; // Import your loading animation component
 import AddToPlaylistPopup from "./AddToPlaylistPopup";
 import VideoThumbnailFeed from "./VideoThumbnailFeed";
-import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
+import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
-
 
 const VideoContainer = ({
   addVideoToPlaylist,
@@ -30,6 +29,8 @@ const VideoContainer = ({
   const iconRef = useRef();
   const buttonRef = useRef();
   const loaderRef = useRef(null); // Reference to the loader element
+
+  const isSidebarVisible = useSelector((state) => state.app.sidebarVisible);
 
   const fetchChannelAvatar = async (channelId) => {
     try {
@@ -70,7 +71,13 @@ const VideoContainer = ({
         })
       );
 
-      setVideos((prevVideos) => [...prevVideos, ...videoItems]);
+      // Remove duplicates by using a Set for unique video IDs
+      setVideos((prevVideos) => {
+        const existingVideoIds = new Set(prevVideos.map(video => video.id.videoId || video.id));
+        const newVideos = videoItems.filter(video => !existingVideoIds.has(video.id.videoId || video.id));
+        return [...prevVideos, ...newVideos];
+      });
+
       setPageToken(res.data.nextPageToken);
       setHasMore(!!res.data.nextPageToken);
     } catch (error) {
@@ -143,20 +150,23 @@ const VideoContainer = ({
       fetchYoutubeVideos(pageToken);
     }
   }, [pageToken]);
+
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, [handleScroll]);
-    
 
-  const handleObserver = useCallback((entries) => {
-    const target = entries[0];
-    if (target.isIntersecting && hasMore && !loading) {
-      fetchYoutubeVideos(pageToken);
-    }
-  }, [loading, pageToken, hasMore]);
+  const handleObserver = useCallback(
+    (entries) => {
+      const target = entries[0];
+      if (target.isIntersecting && hasMore && !loading) {
+        fetchYoutubeVideos(pageToken);
+      }
+    },
+    [loading, pageToken, hasMore]
+  );
 
   useEffect(() => {
     const observer = new IntersectionObserver(handleObserver, {
@@ -175,18 +185,19 @@ const VideoContainer = ({
       }
     };
   }, [handleObserver]);
-  const VideoThumbnailSkeleton = () => (
-  <div className="mt-3 mb-[45px] flex justify-between items-center">
-    <Skeleton width={390} height={250} className="rounded" />
-    
-  </div>
-);
 
+  const VideoThumbnailSkeleton = () => (
+    <div className="mt-3 mb-[45px] flex justify-between items-center">
+      <Skeleton width={390} height={250} className="rounded" />
+    </div>
+  );
+
+  const gridClasses = isSidebarVisible ? "grid-cols-3" : "grid-cols-4";
 
   return (
     <>
       <div
-        className="grid grid-cols-3 gap-[17px] bg-white object-cover mt-5"
+        className={`grid ${gridClasses} gap-[17px] bg-white object-cover mt-5`}
         ref={containerRef}
       >
         {videos.length === 0 && loading
@@ -220,10 +231,7 @@ const VideoContainer = ({
       {loading && <LoadingAnimation />} {/* Show loading animation while loading */}
       <div ref={loaderRef} />
       {showPopup && (
-        <AddToPlaylistPopup
-          video={selectedVideo}
-          closePopup={handleClosePopup}
-        />
+        <AddToPlaylistPopup video={selectedVideo} closePopup={handleClosePopup} />
       )}
     </>
   );

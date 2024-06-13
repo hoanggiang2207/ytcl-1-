@@ -153,6 +153,7 @@ const Watch = () => {
       return count.toString();
     }
   };
+  
 
   return (
     
@@ -175,6 +176,7 @@ const Watch = () => {
           <div className="flex items-center justify-between w-[995px]">
             <div className="flex justify-between items-center w-[27%]">
               <div className="flex items-center">
+                
                 <Avatar src={ytIcon} size={40} round={true} className="flex-shrink-0"/>
                 <div className="ml-2">
                   <h1 className="font-bold">

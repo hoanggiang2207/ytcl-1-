@@ -68,19 +68,19 @@ const Navbar = () => {
   };
 
   return (
-    <div className="flex fixed top-0 justify-center items-center w-[100%] z-10 bg-white">
-      <div className="flex w-[96%] mt-[8px] justify-between items-center">
+    <div className="flex fixed top-0 justify-center items-center w-full z-10 bg-white h-[55px]">
+      <div className="flex w-[96%] h-full justify-between items-center">
         <div className="flex items-center">
           <FontAwesomeIcon
-            className="cursor-pointer"
+            className="cursor-pointer select-none ml-[0.13rem]"
             onClick={toggleHandler}
             icon={faBars}
             style={{ fontSize: "24px" }}
           />
           <Link to="/">
             <img
-              className="ml-2 px-4"
-              width={"110px"}
+              className="ml-2 px-4 select-none"
+              width={"120px"}
               src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/YouTube_Logo_2017.svg/768px-YouTube_Logo_2017.svg.png"
               alt="logo"
             />
@@ -88,12 +88,12 @@ const Navbar = () => {
         </div>
 
         <div className="relative flex w-[40%] items-center" ref={formRef}>
-          <form onSubmit={handleSubmit} className="flex w-full">
+          <form onSubmit={handleSubmit} className="flex w-full items-center">
             <div className="flex-grow px-4 py-2 border border-r-0 rounded-l-full">
               <input
                 type="text"
                 placeholder="Find Your Video"
-                className="w-full outline-none"
+                className="w-full outline-none select-none"
                 ref={inputRef}
                 onClick={inputClickHandler}
                 onChange={inputChangeHandler}
@@ -102,7 +102,7 @@ const Navbar = () => {
             </div>
             <button
               type="submit"
-              className="px-4 py-2 border border-grey-400 text-black rounded-r-full"
+              className="px-4 py-2 border border-grey-400 text-black rounded-r-full w-[65px]"
             >
               <FontAwesomeIcon icon={faMagnifyingGlass} />
             </button>
@@ -132,7 +132,7 @@ const Navbar = () => {
             src="https://images.pexels.com/photos/697509/pexels-photo-697509.jpeg?cs=srgb&dl=pexels-andrewpersonaltraining-697509.jpg&fm=jpg"
             size={35}
             round={true}
-            className="cursor-pointer"
+            className="cursor-pointer select-none"
           />
         </div>
       </div>

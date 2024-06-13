@@ -6,7 +6,8 @@ import {
   ADD_PLAYLIST, 
   REMOVE_PLAYLIST, 
   ADD_VIDEO_TO_PLAYLIST, 
-  REMOVE_VIDEO_FROM_PLAYLIST 
+  REMOVE_VIDEO_FROM_PLAYLIST,
+  DELETE_ALL_HISTORY, 
 } from '../utils/action';
 import appReducer from '../utils/appSlice';
 
@@ -69,7 +70,13 @@ const playlistsReducer = (state = initialState, action) => {
         watchedVideos: state.watchedVideos.filter(
           (video) => video.id !== action.payload
         ),
-      };  
+      };
+        
+      case DELETE_ALL_HISTORY:
+      return {
+        ...state,
+        watchedVideos: [],
+      };
     
     default:
       return state;

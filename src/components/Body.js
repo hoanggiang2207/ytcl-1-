@@ -5,9 +5,9 @@ import { Outlet } from "react-router-dom";
 
 const Body = () => {
   return (
-    <div className="flex mt-16">
+    <div className="flex mt-[55px] ">
       <div >
-      <Sidebar />
+      <Sidebar className="" />
       </div>
       <Outlet />
     </div>

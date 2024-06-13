@@ -7,6 +7,7 @@ export const REMOVE_VIDEO_FROM_PLAYLIST = 'REMOVE_VIDEO_FROM_PLAYLIST';
 
 export const ADD_WATCHED_VIDEO = 'ADD_WATCHED_VIDEO';
 export const DELETE_VIDEO_FROM_HISTORY = 'DELETE_VIDEO_FROM_HISTORY';
+export const DELETE_ALL_HISTORY = 'DELETE_ALL_HISTORY';
 
 
 // Action to add a playlist
@@ -53,5 +54,8 @@ export const addWatchedVideo = (video) => {
 export const deleteVideoFromHistory = (videoId) => ({
   type: DELETE_VIDEO_FROM_HISTORY,
   payload: videoId,
+});
+export const deleteAllHistory = () => ({
+  type: DELETE_ALL_HISTORY,
 });
 

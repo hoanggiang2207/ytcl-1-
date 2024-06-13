@@ -48,8 +48,8 @@ export default function Sidebar() {
   ) : null;
 
   return (
-    <div className={`${sidebarWidth} flex-shrink-0  pr-4 overflow-auto pb-8 sidebar`}>
-      <ul className="flex flex-col  border-b-2 border-gray-200">
+    <div className={`${sidebarWidth} flex-shrink-0 pr-4 overflow-auto pb-8 sidebar sticky top-[55px] h-[720px]`}>
+      <ul className="flex flex-col border-b-2 border-gray-200">
         {mainLinks.map(({ icon, name, url }) => (
           <li
             key={name}
@@ -58,9 +58,7 @@ export default function Sidebar() {
             }`}
           >
             <Link to={url} className="flex items-center gap-5 ml-2">
-              
               {icon}
-
               {isSidebarVisible && <span className="text-sm tracking-wider">{name}</span>}
             </Link>
           </li>
