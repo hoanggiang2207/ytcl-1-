@@ -157,23 +157,23 @@ const Watch = () => {
 
   return (
     
-    <div className="flex flex-row ml-[48px]  mt-[70px] ">
+    <div className="flex flex-row ml-[100px]  mt-[70px] ">
       
       <div className="flex flex-col mr-[25px] mt-3 ">
         <div>
           <iframe
-            width="995"
-            height="560"
+            width="1280"
+            height="720"
             src={`https://www.youtube.com/embed/${videoId}?&autoplay=0`}
             title="YouTube video player"
-            className="rounded-lg flex-shrink-0"
+            className="rounded-xl flex-shrink-0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             allowFullScreen
           ></iframe>
           <h1 className="font-bold text-xl mb-[10px] font-roboto mt-[10px]">
             {singleVideo?.snippet?.title}
           </h1>
-          <div className="flex items-center justify-between w-[995px]">
+          <div className="flex items-center justify-between w-[1280px]">
             <div className="flex justify-between items-center w-[27%]">
               <div className="flex items-center">
                 
@@ -193,7 +193,7 @@ const Watch = () => {
                 Subscribe
               </button>
             </div>
-            <div className="flex items-center w-[45%] justify-between mt-2">
+            <div className="flex items-center w-[33%] justify-between mt-2">
               <div className="flex items-center cursor-pointer bg-gray-200 px-4 h-[38px] rounded-full ">
                 <AiOutlineLike size="20px" className="mr-1" />
                 <span>{shortenSubscriberCount(likeCount).toLocaleString()}</span>
@@ -241,7 +241,7 @@ const Watch = () => {
         </div>
       </div>
       {/* related videos */}
-      <div className="w-[393px] ">
+      <div className="w-[394px] ">
         <h2 className="font-bold text-xl mb-4">Related Videos</h2>
         <div className="grid grid-cols-1 gap-4 mb-10">
           {relatedVideos.map((video) => (

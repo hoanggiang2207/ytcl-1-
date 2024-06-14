@@ -82,9 +82,9 @@ const MyPlaylist = ({ playlists, removePlaylist }) => {
   return (
     <div className="ml-4">
       <h1 className="text-[35px] font-bold mb-4">My Playlists</h1>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
         {Object.keys(playlists).length === 0 ? (
-          <div className="flex justify-center items-center h-full col-span-4">
+          <div className="flex justify-center items-center h-full col-span-6">
             <p className="text-lg text-gray-500">No playlists available</p>
           </div>
         ) : (
@@ -99,7 +99,7 @@ const MyPlaylist = ({ playlists, removePlaylist }) => {
                           playlists[playlist][0].snippet.thumbnails.medium.url
                         }
                         alt={playlists[playlist][0].snippet.title}
-                        className="w-[295px] h-[175px] object-cover mb-2 rounded-lg gap-[18px]"
+                        className="w-[258px] h-[154px] object-cover mb-2 rounded-lg gap-[18px]"
                       />
 
                       <div className="absolute bottom-1 right-1 bg-black bg-opacity-50 text-white px-2 py-1 text-xs rounded-lg">

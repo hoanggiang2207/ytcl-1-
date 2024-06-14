@@ -68,8 +68,8 @@ const Navbar = () => {
   };
 
   return (
-    <div className="flex fixed top-0 justify-center items-center w-full z-10 bg-white h-[55px]">
-      <div className="flex w-[96%] h-full justify-between items-center">
+    <div className="flex fixed top-0 justify-center items-center w-full z-10 bg-white h-[57px]">
+      <div className="flex w-[96.9%] h-full justify-between items-center">
         <div className="flex items-center">
           <FontAwesomeIcon
             className="cursor-pointer select-none ml-[0.13rem]"

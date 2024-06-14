@@ -7,7 +7,7 @@ const Feed = () => {
   
 
   return (
-    <div className='ml-5 mr-5 w-[100%]'> 
+    <div className='ml-[0.81rem] mr-5 w-[100%]'> 
       
       <VideoContainer/>
     </div>

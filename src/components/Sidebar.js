@@ -31,7 +31,7 @@ export default function Sidebar() {
 
   const textLinks = [[], []];
 
-  const sidebarWidth = isSidebarVisible ? "w-[240px]" : "w-[100px]";
+  const sidebarWidth = isSidebarVisible ? "w-[250px]" : "w-[100px]";
   const shouldRenderExtraContent = isSidebarVisible ? (
     <>
       <ul className="flex gap-2 flex-wrap text-sm p-4 text-zinc-400">
@@ -49,12 +49,12 @@ export default function Sidebar() {
 
   return (
     <div className={`${sidebarWidth} flex-shrink-0 pr-4 overflow-auto pb-8 sidebar sticky top-[55px] h-[720px]`}>
-      <ul className="flex flex-col border-b-2 border-gray-200">
+      <ul className="flex flex-col border-b-2 border-[#E7E7E7]">
         {mainLinks.map(({ icon, name, url }) => (
           <li
             key={name}
-            className={`pl-6 py-3 hover:bg-zinc-400 ${
-              location.pathname === url ? "bg-slate-200" : ""
+            className={`pl-6 py-3 hover:bg-[#F2F2F2] ${
+              location.pathname === url ? "bg-[#F2F2F2]" : ""
             }`}
           >
             <Link to={url} className="flex items-center gap-5 ml-2">
@@ -64,12 +64,12 @@ export default function Sidebar() {
           </li>
         ))}
       </ul>
-      <ul className="flex flex-col border-b-2 border-gray-200">
+      <ul className="flex flex-col border-b-2 border-[#E7E7E7]">
         {secondaryLinks.map(({ icon, name, url }) => (
           <li
             key={name}
-            className={`pl-6 py-3 hover:bg-zinc-400 ${
-              location.pathname === url ? "bg-slate-200" : ""
+            className={`pl-6 py-3 hover:bg-[#F2F2F2] ${
+              location.pathname === url ? "bg-[#F2F2F2]" : ""
             }`}
           >
             <Link to={url} className="flex items-center ml-2 gap-5">

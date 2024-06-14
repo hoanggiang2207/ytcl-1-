@@ -60,7 +60,7 @@ const RelatedVideoThumbnail = ({ video }) => {
       <img
         src={video.snippet.thumbnails.medium.url}
         alt={video.snippet.title}
-        className="w-[168px] h-[95px] object-cover rounded-lg"
+        className="w-[168px] h-[94px] object-cover rounded-lg"
       />
       <div className="flex-grow">
         <h className="text-sm font-bold line-clamp-2 ">{video.snippet.title}</h>

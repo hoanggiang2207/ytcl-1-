@@ -5,12 +5,13 @@ import { removeVideoFromPlaylist } from '../utils/action';
 import { MdSort } from "react-icons/md";
 import { HiDotsVertical } from "react-icons/hi";
 import { RiDeleteBinLine } from "react-icons/ri";
+import { IoReorderTwoOutline } from "react-icons/io5";
 
 // Mocked functions (Replace these with your actual utility functions)
 const shortenNumber = (num) => num.toLocaleString();
 const formatDate = (date) => new Date(date).toLocaleDateString();
 
-const PlaylistPage = ({ playlists, removeVideoFromPlaylist, dispatch }) => {
+const PlaylistPage = ({ playlists, removeVideoFromPlaylist }) => {
   const { playlistName } = useParams();
   const [playlistVideos, setPlaylistVideos] = useState([]);
   const [showDeleteButton, setShowDeleteButton] = useState({});
@@ -72,23 +73,27 @@ const PlaylistPage = ({ playlists, removeVideoFromPlaylist, dispatch }) => {
 
   return (
     <div className="flex gap-4 p-4">
-      <div className="bg-gray-100 p-4 rounded-lg shadow-md sticky top-[80px]" style={{ width: '360px', height: '673px' }}>
+      <div className="bg-gray-100 p-4 rounded-lg shadow-md sticky top-[80px]" style={{ width: '360px', height: '888px' }}>
         <img src={firstVideo.snippet.thumbnails.medium.url} alt={firstVideo.snippet.title} className="w-full h-auto rounded-lg mb-2" />
         <h2 className="font-bold text-2xl mb-2">{playlistName}</h2>
         <p className="text-gray-600 mb-4">Number of videos: {playlistVideos.length}</p>
       </div>
-      <div className="flex-grow flex flex-col gap-4 mt-20" style={{ maxWidth: '860px' }}>
-        <div className="flex items-center">
+      <div className="flex-grow flex flex-col gap- mt-10 " style={{ width: '1225px' }}>
+        <div className="flex items-center ml-10 mb-1">
           <MdSort className="size-[25px] mr-2" />
           <p className="font-semibold">Sort</p>
         </div>
         {playlistVideos.map((video, index) => (
-          <div key={video.id} className="mb-4 flex relative">
+          <div key={video.id} className=" relative ">
             <Link
               to={`/watch?v=${typeof video.id === "object" ? video.id.videoId : video.id}`}
+              className="block  rounded-lg overflow-hidden bg-white hover:bg-[#E2E2E2] transition-colors duration-300"
             >
-              <div className="flex">
-                <img src={video.snippet.thumbnails.medium.url} alt={video.snippet.title} className="w-[160px] h-[90px] rounded-lg mb-2 mr-2" />
+              <div className="flex ">
+                <div className="flex items-center mr-[0.8rem]">
+                  <IoReorderTwoOutline className="text-[32px]" />
+                </div>
+                <img src={video.snippet.thumbnails.medium.url} alt={video.snippet.title} className="w-[160px] h-[90px] rounded-lg mb-2 mt-2 mr-2 " />
                 <div>
                   <div
                     className="line-clamp-2 text-[16px] font-[500] text-black"
@@ -97,7 +102,7 @@ const PlaylistPage = ({ playlists, removeVideoFromPlaylist, dispatch }) => {
                   >
                     {video.snippet.title}
                     {tooltipVisible === index && (
-                      <div className="absolute z-10 inline-block px-2 py-2 text-[14px] text-white bg-gray-900 rounded-lg shadow-sm tooltip dark:bg-gray-700">
+                      <div className="absolute z-10 px-10 py-2 text-[14px] text-white bg-gray-900 rounded-lg shadow-sm tooltip dark:bg-gray-700">
                         {video.snippet.title}
                       </div>
                     )}
@@ -111,7 +116,7 @@ const PlaylistPage = ({ playlists, removeVideoFromPlaylist, dispatch }) => {
                 </div>
               </div>
             </Link>
-            <div className='ml-40'>
+            <div className='ml-auto'>
               <button
                 ref={(el) => (moreButtonRefs.current[video.id] = el)}
                 onClick={() => toggleDeleteButton(video.id)}

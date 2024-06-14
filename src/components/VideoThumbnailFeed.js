@@ -29,8 +29,8 @@ const VideoThumbnailFeed = ({
 }) => {
   const isSidebarVisible = useSelector((state) => state.app.sidebarVisible);
 
-  const thumbnailWidth = isSidebarVisible ? 400 : 340;
-  const thumbnailHeight = isSidebarVisible ? 225 : 192;
+  const thumbnailWidth = isSidebarVisible ? 312 : 346;
+  const thumbnailHeight = isSidebarVisible ? 176 : 195;
 
   const [dropdownPosition, setDropdownPosition] = useState({ top: 0, left: 0 });
 

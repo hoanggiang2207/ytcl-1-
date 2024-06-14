@@ -53,7 +53,7 @@ const VideoContainer = ({
         params: {
           pageToken: token,
           videoCategoryId: selectedCategory,
-          maxResults: 12,
+          maxResults: 15,
         },
       });
 
@@ -192,7 +192,7 @@ const VideoContainer = ({
     </div>
   );
 
-  const gridClasses = isSidebarVisible ? "grid-cols-3" : "grid-cols-4";
+  const gridClasses = isSidebarVisible ? "grid-cols-5" : "grid-cols-5";
 
   return (
     <>

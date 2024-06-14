@@ -60,7 +60,7 @@ const CommentSection = ({ videoId }) => {
   
 
   return (
-    <div className="comment-section mt-4 pb-10 w-[995px]">
+    <div className="comment-section mt-4 pb-10 w-[1280px]">
       {comments.map((comment, index) => (
         <div className="comment flex items-center mt-4 gap-1" key={index}>
           <Avatar className="flex-shrink-0" src={comment.authorProfileImageUrl} size={40} round={true} />
