@@ -3,12 +3,14 @@ import axios from "axios";
 import API_KEY from "../constants/yt-API";
 import { useDispatch } from 'react-redux';
 import { addWatchedVideo } from '../utils/action';
+import { useNavigate } from 'react-router-dom';
 
 const VideoThumbnails = ({ item, showThumbnail = true, showTitle = true, showAvatar = true }) => {
   const [ytIcon, setYtIcon] = useState("");
   const [viewCount, setViewCount] = useState(0);
   const [publishDate, setPublishDate] = useState("");
   const dispatch = useDispatch();
+  const navigate = useNavigate(); // Use useNavigate for navigation
 
   const axiosInstance = axios.create({
     baseURL: 'https://youtube.googleapis.com/youtube/v3',
@@ -46,9 +48,33 @@ const VideoThumbnails = ({ item, showThumbnail = true, showTitle = true, showAva
     getVideoDetails();
   }, [item.snippet.channelId, item.id.videoId]);
 
-  const handleWatchVideo = () => {
-    dispatch(addWatchedVideo(item));
+  const handleWatchVideo = async () => {
+    try {
+      // Check if the video is live
+      if (item.snippet.liveBroadcastContent === "live") {
+        // Check if the live video is still live
+        const res = await axios.get(`https://youtube.googleapis.com/youtube/v3/videos?part=liveStreamingDetails&id=${item.id.videoId}&key=${API_KEY}`);
+        const liveDetails = res.data.items[0].liveStreamingDetails;
+        
+        // Check if the live video is currently live
+        if (liveDetails && liveDetails.actualStartTime && !liveDetails.actualEndTime) {
+          navigate(`/live?v=${item.id.videoId}`);
+        } else {
+          // If live video has ended, treat as a normal video
+          dispatch(addWatchedVideo(item));
+          navigate(`/watch?v=${item.id.videoId}`);
+        }
+      } else {
+        // Non-live video
+        dispatch(addWatchedVideo(item));
+        navigate(`/watch?v=${item.id.videoId}`);
+      }
+    } catch (error) {
+      console.error("Error checking live status:", error);
+      // Handle error if necessary
+    }
   };
+  
 
   const shortenNumber = (num) => {
     if (num >= 1e9) return (num / 1e9).toFixed(1) + 'B';
@@ -72,16 +98,17 @@ const VideoThumbnails = ({ item, showThumbnail = true, showTitle = true, showAva
       return `${diffYears} years ago`;
     }
   };
+  
 
   return (
-    <div className='w-full cursor-pointer ' onClick={handleWatchVideo}>
+    <div className='w-[1252px] cursor-pointer ' onClick={handleWatchVideo}>
       <div className="flex">
         {showThumbnail && (
-          <img className='rounded-xl w-80 h-48' src={item.snippet.thumbnails.medium.url} alt="video" />
+          <img className='rounded-xl w-[500px] h-[282px]' src={item.snippet.thumbnails.medium.url} alt="video" />
         )}
         <div className="ml-4 flex flex-col">
           {showTitle && (
-            <h1 className="font-bold text-xl  line-clamp-1">
+            <h1 className="font-bold text-xl  line-clamp-2">
               {item.snippet.title}
             </h1>
           )}

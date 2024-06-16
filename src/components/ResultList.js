@@ -84,23 +84,22 @@ const ResultList = () => {
   }, [query, filters]);
 
   return (
-    <div>
+    <div className="container mx-auto px-4">
       <FilterBar filters={filters} setFilters={setFilters} />
 
-      <div className=" ml-3 mt-4 ">
+      <div className="flex flex-wrap justify-center mt-4">
         {searchResults.map(item => {
           switch (filters.type) {
             case 'video':
               return (
-                <Link
-                  to={`/watch?v=${item.id.videoId}`}
-                  key={item.id.videoId}
-                  className="m-1 no-underline"
-                >
-                  <div className="w-full max-w-1xl bg-white rounded-lg overflow-hidden">
+                <div key={item.id.videoId} className="m-4">
+                  <Link
+                    to={`/watch?v=${item.id.videoId}`}
+                    className="block bg-white rounded-lg overflow-hidden "
+                  >
                     <VideoThumbnails item={item} />
-                  </div>
-                </Link>
+                  </Link>
+                </div>
               );
             case 'channel':
               return (
@@ -122,12 +121,11 @@ const ResultList = () => {
               );
             case 'playlist':
               return (
-                <Link
-                  to={`/playlist?list=${item.id.playlistId}`}
-                  key={item.id.playlistId}
-                  className="m-1 no-underline"
-                >
-                  <div className="w-full max-w-xs bg-white shadow-md rounded-lg overflow-hidden relative">
+                <div key={item.id.playlistId} className="m-4">
+                  <Link
+                    to={`/playlist?list=${item.id.playlistId}`}
+                    className="block w-full max-w-xs bg-white shadow-md rounded-lg overflow-hidden relative"
+                  >
                     <img
                       src={item.snippet.thumbnails.default.url}
                       alt={item.snippet.title}
@@ -140,8 +138,8 @@ const ResultList = () => {
                       <div className="mt-2 text-lg font-bold">{item.snippet.title}</div>
                       <div className="text-sm text-gray-600">{item.snippet.channelTitle}</div>
                     </div>
-                  </div>
-                </Link>
+                  </Link>
+                </div>
               );
             default:
               return null;

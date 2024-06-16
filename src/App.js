@@ -12,6 +12,7 @@ import ChannelDetail from "./components/ChannelDetail";
 import Drawer from "./components/Drawer"; // Ensure the correct path
 import SidebarHandler from "./components/SidebarHandler"; // Ensure the correct path
 import PlaylistPage from "./components/PlaylistPage";
+import LiveVideo from "./components/LiveVideo";
 
 
 function App() {
@@ -36,6 +37,7 @@ function App() {
         <div className="flex-1">
           <Routes>
             <Route path="/watch" element={<Watch />} />
+            <Route path="/live" element={<LiveVideo />} />
             <Route path="/" element={<Body />}>
               <Route index element={<Feed />} />
               <Route path="/playlist" element={<WatchPlaylist />} />

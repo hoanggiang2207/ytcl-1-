@@ -3,7 +3,7 @@ import React from "react";
 
 const SkeletonLoadingThumbnail = () => {
   return (
-    <div className="bg-gray-200 animate-pulse w-[390px] h-[225px] rounded" />
+    <div className="bg-gray-200 animate-pulse w-[312px] h-[176px] rounded-lg" />
   );
 };
 

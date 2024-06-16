@@ -188,7 +188,7 @@ const VideoContainer = ({
 
   const VideoThumbnailSkeleton = () => (
     <div className="mt-3 mb-[45px] flex justify-between items-center">
-      <Skeleton width={390} height={250} className="rounded" />
+      <Skeleton width={346} height={195} className="rounded-lg" />
     </div>
   );
 
@@ -201,7 +201,7 @@ const VideoContainer = ({
         ref={containerRef}
       >
         {videos.length === 0 && loading
-          ? Array.from({ length: 12 }).map((_, index) => (
+          ? Array.from({ length: 15 }).map((_, index) => (
               <VideoThumbnailSkeleton key={index} />
             ))
           : videos.map((item, index) => (
