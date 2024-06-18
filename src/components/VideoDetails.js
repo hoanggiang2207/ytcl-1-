@@ -55,11 +55,11 @@ const VideoDetails = ({ video, channelIcon, subscriberCount }) => {
     <div className="bg-gray-100 p-4 rounded-lg mt-[16px] w-[1280px] 2xl:w-[935px]">
       <div className="font-semibold">
       <span>
-    {showMore ? parseInt(statistics.viewCount).toLocaleString() : shortenNumber(statistics.viewCount)} views • 
+    {showMore ? parseInt(statistics.viewCount).toLocaleString() : shortenNumber(statistics.viewCount)} views •  
   </span>
-        <span>{showMore ? formatDateRe(snippet.publishedAt) : formatDate(snippet.publishedAt)}</span>
+        <span> {showMore ? formatDateRe(snippet.publishedAt) : formatDate(snippet.publishedAt)}</span>
         {snippet.tags && (
-          <span className="text-[#606060]"> #{snippet.tags.join(' #')}</span>
+          <span className="text-[#606060]"> <span></span> #{snippet.tags.join(' #')}</span>
         )}
       </div>
 

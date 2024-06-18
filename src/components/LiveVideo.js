@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useSearchParams, Link } from "react-router-dom"; // Added Link from react-router-dom
+import { useSearchParams } from "react-router-dom";
 import axios from "axios";
 import Avatar from "react-avatar";
 import { AiOutlineLike, AiOutlineDislike } from "react-icons/ai";
@@ -7,15 +7,15 @@ import { PiShareFatLight } from "react-icons/pi";
 import { GoDownload } from "react-icons/go";
 import { useDispatch } from "react-redux";
 import { setMessage } from "../utils/chatSlice";
-import Comment from "./Comment";
-import CommentSection from "./CommentSection";
+
 import RelatedVideoThumbnail from "./RelatedVideoThumbnail";
 import API_KEY from "../constants/yt-API";
 import VideoDetails from "./VideoDetails";
 import { IoEllipsisHorizontalSharp } from "react-icons/io5";
-import LiveCommentSection from "./LiveCommentSection"; // Added LiveCommentSection
-import { IoSend } from "react-icons/io5"; // Replaced LuSendHorizontal with IoSend
+import LiveCommentSection from "./LiveCommentSection"; // Assuming you've imported LiveCommentSection
+import { IoSend } from "react-icons/io5";
 import { BsThreeDotsVertical } from "react-icons/bs";
+import { Link } from "react-router-dom";
 
 const axiosInstance = axios.create({
   baseURL: "https://youtube.googleapis.com/youtube/v3",
@@ -101,7 +101,9 @@ const LiveVideo = () => {
       }
     };
 
-    getSingleVideo();
+    if (videoId) {
+      getSingleVideo();
+    }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [videoId]);
@@ -224,7 +226,7 @@ const LiveVideo = () => {
                 <GoDownload />
                 <span>Download</span>
               </div>
-              <div className="flex items-center cursor-pointer bg-gray-200 px-4 h-[38px] rounded-full">
+              <div className="flex items-center cursor-pointer bg-gray-              200 px-4 h-[38px] rounded-full">
                 <IoEllipsisHorizontalSharp />
               </div>
             </div>
@@ -238,18 +240,23 @@ const LiveVideo = () => {
           />
         </div>
       </div>
-      <div className="flex flex-col w-[394px]">
+      <div className="flex flex-col w-[400px] mt-3 ">
         {/* Live comment section */}
-        <div className="border border-gray-300 rounded-lg h-fit p-4 mb-4">
-          <div className="flex justify-between items-center">
+        <div className="border border-gray-300 rounded-lg p-4 mb-4">
+          <div className="flex justify-between items-center border-b border-gray-300 pb-3">
             <h1>Top Chat</h1>
             <BsThreeDotsVertical />
           </div>
-          <div className="overflow-y-auto h-[28rem] flex flex-col-reverse">
-            <LiveCommentSection />
+          <div className=" flex overflow-y-auto h-[597px]">
+            {" "}
+            {/* h-72 for 720px height */}
+            <LiveCommentSection videoId={videoId} />{" "}
+            {/* Pass videoId prop to LiveCommentSection */}
           </div>
-          <div className="flex items-center justify-between border-t p-2">
-            <div className="flex items-center w-[90%]">
+          <div className="flex items-center justify-between border-t p-2 w-400">
+            {" "}
+            {/* w-400 for 400px width */}
+            <div className="flex items-center">
               <div>
                 <Avatar
                   src="https://images.pexels.com/photos/697509/pexels-photo-697509.jpeg?cs=srgb&dl=pexels-andrewpersonaltraining-697509.jpg&fm=jpg"
@@ -270,9 +277,8 @@ const LiveVideo = () => {
             </div>
           </div>
         </div>
-        
-        
-        {/* related videos */}
+
+        {/* Related videos */}
         <div className="w-[100%] mt-4">
           <h2 className="font-bold text-xl mb-4">Related Videos</h2>
           <div className="grid grid-cols-1 gap-4 mb-10">
@@ -291,4 +297,3 @@ const LiveVideo = () => {
 };
 
 export default LiveVideo;
-
