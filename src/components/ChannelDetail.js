@@ -3,6 +3,7 @@ import { useLocation } from "react-router-dom";
 import API_KEY from "../constants/yt-API";
 import Avatar from "react-avatar";
 import { CiSearch } from "react-icons/ci";
+import { Link } from "react-router-dom";
 
 const ChannelDetail = () => {
   const [channelName, setChannelName] = useState("");
@@ -166,25 +167,37 @@ const ChannelDetail = () => {
       </div>
 
       {/* Row 3: Featured video */}
-{featuredVideo && (
-  <div className="row mb-4">
-    <h2 className="text-xl font-bold mb-2">Featured Video</h2>
-    <div className="flex rounded-lg">
-      <img
-        src={featuredVideo.snippet.thumbnails.medium.url}
-        alt={featuredVideo.snippet.title}
-        className="w-[245px] h-[140px] rounded-lg"
-      />
-      <div className="ml-[18px]">
-        <p className="text-black text-[18px]">{featuredVideo.snippet.title}</p>
-        <p className="text-gray-500 text-sm">
-          {parseInt(featuredVideo.statistics.viewCount).toLocaleString()} views • {new Date(featuredVideo.snippet.publishedAt).toLocaleDateString()}
-        </p>
-        <p className="text-gray-700 text-sm mt-2 line-clamp-2">{featuredVideo.snippet.description}</p>
-      </div>
-    </div>
-  </div>
-)}
+      {featuredVideo && (
+        <div className="row mb-4">
+          <h2 className="text-xl font-bold mb-2">Featured Video</h2>
+          <Link to={`/watch?v=${featuredVideo.id}`}>
+            <div className="flex rounded-lg">
+              <img
+                src={featuredVideo.snippet.thumbnails.medium.url}
+                alt={featuredVideo.snippet.title}
+                className="w-[245px] h-[140px] rounded-lg"
+              />
+              <div className="ml-[18px]">
+                <p className="text-black text-[18px]">
+                  {featuredVideo.snippet.title}
+                </p>
+                <p className="text-gray-500 text-sm">
+                  {parseInt(
+                    featuredVideo.statistics.viewCount
+                  ).toLocaleString()}{" "}
+                  views •{" "}
+                  {new Date(
+                    featuredVideo.snippet.publishedAt
+                  ).toLocaleDateString()}
+                </p>
+                <p className="text-gray-700 text-sm mt-2 line-clamp-2">
+                  {featuredVideo.snippet.description}
+                </p>
+              </div>
+            </div>
+          </Link>
+        </div>
+      )}
 
 
       {/* Row 4: Latest videos */}
@@ -192,14 +205,18 @@ const ChannelDetail = () => {
   <h2 className="text-xl font-bold mb-2">Latest Videos</h2>
   <div className="flex items-start gap-1 overflow-x-auto" style={{ overflowX: "hidden", position: "relative" }}>
     {currentVideos.map((video, index) => (
-      <div key={index} className="flex-shrink-0 w-[210px] relative">
-        <img
-          src={video.snippet.thumbnails.medium.url}
-          alt={video.snippet.title}
-          className="w-full h-[120px] mb-2 rounded-lg"
-        />
-        <p className="text-black font-medium line-clamp-2">{video.snippet.title}</p>
-      </div>
+      <Link
+      key={index}
+      to={`/watch?v=${video.id.videoId}`}
+      className="flex-shrink-0 w-[210px] relative"
+    >
+      <img
+        src={video.snippet.thumbnails.medium.url}
+        alt={video.snippet.title}
+        className="w-full h-[120px] mb-2 rounded-lg"
+      />
+      <p className="text-black font-medium line-clamp-2">{video.snippet.title}</p>
+    </Link>
     ))}
     {currentPage > 1 && (
       <div className="absolute top-0 bottom-0 flex items-center">
