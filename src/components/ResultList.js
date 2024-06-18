@@ -84,7 +84,7 @@ const ResultList = () => {
   }, [query, filters]);
 
   return (
-    <div className="container mx-auto px-4">
+    <div className="container mx-auto px-4 ">
       <FilterBar filters={filters} setFilters={setFilters} />
 
       <div className="flex flex-wrap justify-center mt-4">

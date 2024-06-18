@@ -29,8 +29,15 @@ const VideoThumbnailFeed = ({
 }) => {
   const isSidebarVisible = useSelector((state) => state.app.sidebarVisible);
 
-  const thumbnailWidth = isSidebarVisible ? 312 : 346;
-  const thumbnailHeight = isSidebarVisible ? 176 : 195;
+  const getThumbnailClassNames = () => {
+    return isSidebarVisible
+      ? "w-[312px] h-[176px] 2xl:w-[375px] 2xl:h-[212px]"
+      : "w-[346px] h-[195px] 2xl:w-[320px] 2xl:h-[180px]";
+  };
+
+  const getThumbnailWidth = () => {
+    return isSidebarVisible ? "w-full 2xl:w-[full]" : "w-full 2xl:w-[320px]";
+  };
 
   const [dropdownPosition, setDropdownPosition] = useState({ top: 0, left: 0 });
 
@@ -81,7 +88,7 @@ const VideoThumbnailFeed = ({
   return (
     <div
       key={typeof item.id === "object" ? item.id.videoId : item.id}
-      className="bg-white overflow-hidden mb-[45px] w-full relative 2xl:w-[320px]"
+      className={`bg-white overflow-hidden mb-[45px] relative ${getThumbnailWidth()}`}
     >
       <Link
         to={`/watch?v=${
@@ -93,8 +100,7 @@ const VideoThumbnailFeed = ({
           <LazyLoadImage
             src={item.snippet.thumbnails.medium.url}
             alt={item.snippet.title}
-            className="object-cover rounded-xl w-full "
-            style={{ width: thumbnailWidth, height: thumbnailHeight }}
+            className={`object-cover rounded-xl ${getThumbnailClassNames()}`}
             effect="blur"
           />
         ) : (
@@ -150,8 +156,8 @@ const VideoThumbnailFeed = ({
               onClick={handleAddToPlaylist}
               style={{
                 position: "absolute",
-                top: dropdownPosition.bottom,
-                right: dropdownPosition.left,
+                top: dropdownPosition.top,
+                left: dropdownPosition.left,
               }}
               className="flex items-center justify-center focus:outline-none text-white bg-black font-medium rounded-lg text-sm px-5 py-2.5 mt-2 z-50 "
             >
@@ -168,4 +174,3 @@ const VideoThumbnailFeed = ({
 };
 
 export default VideoThumbnailFeed;
-

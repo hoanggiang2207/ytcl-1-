@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState,useEffect } from "react";
 import { BrowserRouter as Router, Route, Routes, useLocation } from "react-router-dom";
 import Body from "./components/Body";
 import Navbar from "./components/Navbar";
@@ -14,10 +14,13 @@ import SidebarHandler from "./components/SidebarHandler"; // Ensure the correct 
 import PlaylistPage from "./components/PlaylistPage";
 import LiveVideo from "./components/LiveVideo";
 import NavbarWatch from "./components/NavbarWatch";
+import useScrollToTop from "./components/useScrollToTop"; // Import the custom hook
 
 function App() {
   const [isDrawerVisible, setDrawerVisible] = useState(false);
   const location = useLocation();
+
+  useScrollToTop(); // Use the custom hook
 
   const handleOverlayClick = () => {
     setDrawerVisible(false);
