@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Route, Routes, useLocation } from "react-router-dom";
 import Body from "./components/Body";
 import Navbar from "./components/Navbar";
@@ -13,16 +13,24 @@ import Drawer from "./components/Drawer"; // Ensure the correct path
 import SidebarHandler from "./components/SidebarHandler"; // Ensure the correct path
 import PlaylistPage from "./components/PlaylistPage";
 import LiveVideo from "./components/LiveVideo";
-
+import NavbarWatch from "./components/NavbarWatch";
 
 function App() {
   const [isDrawerVisible, setDrawerVisible] = useState(false);
+  const location = useLocation();
 
   const handleOverlayClick = () => {
     setDrawerVisible(false);
   };
 
-  const location = useLocation();
+  const toggleDrawer = () => {
+    setDrawerVisible((prev) => !prev);
+  };
+
+  useEffect(() => {
+    setDrawerVisible(false); // Hide drawer on route change
+  }, [location]);
+
   const isWatchRoute = location.pathname === "/watch";
 
   return (
@@ -31,9 +39,10 @@ function App() {
       {isWatchRoute && isDrawerVisible && (
         <div className="fixed inset-0 z-40 bg-black bg-opacity-50" onClick={handleOverlayClick}></div>
       )}
-      {isWatchRoute && <Drawer isDrawerVisible={isDrawerVisible} />}
+      {isWatchRoute && <Drawer isDrawerVisible={isDrawerVisible} toggleDrawer={toggleDrawer} />}
       <div className="flex flex-col h-screen">
-        <Navbar />
+        {!isWatchRoute && <Navbar />}
+        {isWatchRoute && <NavbarWatch isDrawerVisible={isDrawerVisible} toggleDrawer={toggleDrawer} />}
         <div className="flex-1">
           <Routes>
             <Route path="/watch" element={<Watch />} />
