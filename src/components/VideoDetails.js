@@ -52,7 +52,7 @@ const VideoDetails = ({ video, channelIcon, subscriberCount }) => {
   };
 
   return (
-    <div className="bg-gray-100 p-4 rounded-lg mt-[16px] w-[1280px]">
+    <div className="bg-gray-100 p-4 rounded-lg mt-[16px] w-[1280px] 2xl:w-[935px]">
       <div className="font-semibold">
       <span>
     {showMore ? parseInt(statistics.viewCount).toLocaleString() : shortenNumber(statistics.viewCount)} views • 

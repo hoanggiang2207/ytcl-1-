@@ -101,7 +101,7 @@ const VideoThumbnails = ({ item, showThumbnail = true, showTitle = true, showAva
   
 
   return (
-    <div className='w-[1252px] cursor-pointer ' onClick={handleWatchVideo}>
+    <div className='w-[1252px] cursor-pointer 2xl:w-[990px]' onClick={handleWatchVideo}>
       <div className="flex">
         {showThumbnail && (
           <img className='rounded-xl w-[500px] h-[282px]' src={item.snippet.thumbnails.medium.url} alt="video" />

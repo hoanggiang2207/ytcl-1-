@@ -39,16 +39,16 @@ export default function Sidebar() {
           <li key={name}>{name}</li>
         ))}
       </ul>
-      <span className="px-4 text-sm text-zinc-400 ml-2">&copy; 2024 Google</span>
+      <span className="px-4 text-sm text-zinc-400 ml-2 2xl:ml-0">&copy; 2024 Google</span>
       <br />
-      <p className="px-4 pt-3 text-sm text-zinc-400 ml-2">
+      <p className="px-4 pt-3 text-sm text-zinc-400 ml-2 2xl:ml-0">
         This clone is for educational purpose only.
       </p>
     </>
   ) : null;
 
   return (
-    <div className={`${sidebarWidth} flex-shrink-0 pr-4 overflow-auto pb-8 sidebar sticky top-[55px] h-[720px]`}>
+    <div className={`${sidebarWidth} flex-shrink-0 pr-4 overflow-auto pb-8 sidebar sticky top-[55px] h-[720px] 2xl:pr-7`}>
       <ul className="flex flex-col border-b-2 border-[#E7E7E7]">
         {mainLinks.map(({ icon, name, url }) => (
           <li
@@ -57,7 +57,7 @@ export default function Sidebar() {
               location.pathname === url ? "bg-[#F2F2F2]" : ""
             }`}
           >
-            <Link to={url} className="flex items-center gap-5 ml-2">
+            <Link to={url} className="flex items-center gap-5 ml-2 2xl:ml-0">
               {icon}
               {isSidebarVisible && <span className="text-sm tracking-wider">{name}</span>}
             </Link>
@@ -72,7 +72,7 @@ export default function Sidebar() {
               location.pathname === url ? "bg-[#F2F2F2]" : ""
             }`}
           >
-            <Link to={url} className="flex items-center ml-2 gap-5">
+            <Link to={url} className="flex items-center ml-2 gap-5 2xl:ml-0">
               {icon}
               {isSidebarVisible && <span className="text-sm tracking-wider">{name}</span>}
             </Link>

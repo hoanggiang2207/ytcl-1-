@@ -82,7 +82,7 @@ const MyPlaylist = ({ playlists, removePlaylist }) => {
   return (
     <div className="ml-4">
       <h1 className="text-[35px] font-bold mb-4">My Playlists</h1>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+      <div className="grid grid-cols-6 2xl:grid-cols-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
         {Object.keys(playlists).length === 0 ? (
           <div className="flex justify-center items-center h-full col-span-6">
             <p className="text-lg text-gray-500">No playlists available</p>

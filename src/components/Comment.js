@@ -11,7 +11,7 @@ const Comment = ({ onSubmit }) => {
     };
 
     return (
-        <div className='flex items-center justify-between  mt-5 w-[1280px]'>
+        <div className='flex items-center justify-between  mt-5 w-[1280px] 2xl:w-[935px]'>
             <div className='flex items-center gap-3 w-[100%]'>
                 <div>
                     <Avatar src={"https://images.pexels.com/photos/697509/pexels-photo-697509.jpeg?cs=srgb&dl=pexels-andrewpersonaltraining-697509.jpg&fm=jpg"} size={40} round={true} />

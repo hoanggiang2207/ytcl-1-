@@ -5,6 +5,9 @@ module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     extend: {},
+    screens: {
+      '2xl': {'max': '1440px'},
+    },
   },
   plugins: [lineClamp],
 };

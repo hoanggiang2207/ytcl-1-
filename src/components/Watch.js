@@ -158,24 +158,24 @@ const Watch = () => {
 
   return (
     
-    <div className="flex flex-row ml-[100px]  mt-[70px] ">
+    <div className="flex flex-row ml-[100px]  mt-[70px] 2xl:ml-[40px] ">
       
       <div className="flex flex-col mr-[25px] mt-3 ">
-        <div>
+        <div className="">
           <iframe
-            width="1280"
-            height="720"
+            
+            
             src={`https://www.youtube.com/embed/${videoId}?&autoplay=0`}
             title="YouTube video player"
-            className="rounded-xl flex-shrink-0"
+            className="rounded-xl flex-shrink-0 w-[1280px] h-[720px] 2xl:w-[935px] 2xl:h-[524px]"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             allowFullScreen
           ></iframe>
           <h1 className="font-bold text-xl mb-[10px] font-roboto mt-[10px]">
             {singleVideo?.snippet?.title}
           </h1>
-          <div className="flex items-center justify-between w-[1280px]">
-            <div className="flex justify-between items-center w-[22%]">
+          <div className="flex items-center justify-between w-[1280px] 2xl:w-[781px]">
+            <div className="flex justify-between items-center w-[22%] 2xl:w-[35%]">
               <div className="flex items-center">
               <Link to={`/channel?channelId=${singleVideo?.snippet?.channelId}`}>
                 <Avatar src={ytIcon} size={40} round={true} className="flex-shrink-0"/>
@@ -195,7 +195,7 @@ const Watch = () => {
                 Subscribe
               </button>
             </div>
-            <div className="flex items-center w-[33%] justify-between mt-2">
+            <div className="flex items-center w-[33%] justify-between mt-2 ">
               <div className="flex items-center cursor-pointer bg-gray-200 px-4 h-[38px] rounded-full ">
                 <AiOutlineLike size="20px" className="mr-1" />
                 <span>{shortenSubscriberCount(likeCount).toLocaleString()}</span>
@@ -218,7 +218,7 @@ const Watch = () => {
             </div>
           </div>
         </div>
-        <div>
+        <div >
           <VideoDetails
             video={singleVideo}
             channelIcon={ytIcon}

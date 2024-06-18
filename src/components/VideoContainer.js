@@ -192,12 +192,12 @@ const VideoContainer = ({
     </div>
   );
 
-  const gridClasses = isSidebarVisible ? "grid-cols-5" : "grid-cols-5";
+  const gridClasses = isSidebarVisible ? "grid-cols-5 2xl:grid-cols-3 " : "grid-cols-5 2xl:grid-cols-4";
 
   return (
     <>
       <div
-        className={`grid ${gridClasses} gap-[17px] bg-white object-cover mt-5`}
+        className={`grid ${gridClasses}  gap-[17px] bg-white object-cover mt-5`}
         ref={containerRef}
       >
         {videos.length === 0 && loading

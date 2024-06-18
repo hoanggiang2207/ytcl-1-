@@ -81,7 +81,7 @@ const VideoThumbnailFeed = ({
   return (
     <div
       key={typeof item.id === "object" ? item.id.videoId : item.id}
-      className="bg-white overflow-hidden mb-[45px] w-full relative"
+      className="bg-white overflow-hidden mb-[45px] w-full relative 2xl:w-[320px]"
     >
       <Link
         to={`/watch?v=${
@@ -93,7 +93,7 @@ const VideoThumbnailFeed = ({
           <LazyLoadImage
             src={item.snippet.thumbnails.medium.url}
             alt={item.snippet.title}
-            className="object-cover rounded-xl w-full"
+            className="object-cover rounded-xl w-full "
             style={{ width: thumbnailWidth, height: thumbnailHeight }}
             effect="blur"
           />
@@ -140,7 +140,7 @@ const VideoThumbnailFeed = ({
           <button
             ref={iconRef}
             onClick={handleIconClick}
-            className="focus:outline-none text-gray-500 mt-1"
+            className="focus:outline-none text-gray-500 mt-1 "
           >
             <CiMenuKebab />
           </button>
@@ -153,7 +153,7 @@ const VideoThumbnailFeed = ({
                 top: dropdownPosition.bottom,
                 right: dropdownPosition.left,
               }}
-              className="flex items-center justify-center focus:outline-none text-white bg-black font-medium rounded-lg text-sm px-5 py-2.5 mt-2 z-50"
+              className="flex items-center justify-center focus:outline-none text-white bg-black font-medium rounded-lg text-sm px-5 py-2.5 mt-2 z-50 "
             >
               Add to Playlist
               <span className="ml-2 text-xl">
